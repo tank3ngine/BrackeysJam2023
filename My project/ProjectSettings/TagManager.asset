@@ -3,7 +3,8 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Lanes
   layers:
   - Default
   - TransparentFX
@@ -40,4 +41,22 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: BG-Far
+    uniqueID: 3503067281
+    locked: 0
+  - name: BG-Mid
+    uniqueID: 3934182261
+    locked: 0
+  - name: BG-Near
+    uniqueID: 721559157
+    locked: 0
+  - name: FG -Far
+    uniqueID: 3638736439
+    locked: 0
+  - name: FG-Mid
+    uniqueID: 3121881717
+    locked: 0
+  - name: FG-Near
+    uniqueID: 3856412157
     locked: 0
