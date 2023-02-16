@@ -8,6 +8,7 @@ public class ObstacleSpawnerScript : MonoBehaviour
     private GameManager GMScript;
 
     [SerializeField] private GameObject[] SpawnLocations;
+    [SerializeField] private GameObject baseObsPrefab;
 
     [SerializeField] private int spawnCount = 0;
 
@@ -29,46 +30,25 @@ public class ObstacleSpawnerScript : MonoBehaviour
         //The total number of obstacles to spawn for this round
         int targetSpawnCount = GMScript.NumObstacles();
         Debug.Log(GMScript.currentRound);
-        if (GMScript.currentRound == 1)
+
+        for (int i = 0; i < targetSpawnCount; i++)
         {
-            for (int i = 0; i < targetSpawnCount; i++)
+            //var locationPicker = Random.Range(0, (SpawnLocations.Length - 1));
+            var locationPicker = Random.Range(0, SpawnLocations.Length);//todo might need to -1 the length
+            //Spawn a basic obstacle object
+            GameObject baseObj= Instantiate(baseObsPrefab, SpawnLocations[locationPicker].transform.position, Quaternion.identity, SpawnLocations[locationPicker].transform);
+
+            if (GMScript.currentRound == 1)
             {
                 var typePicker = Random.Range(0, GMScript.round1_Obs.Length);
-                Debug.Log(typePicker);
-                //var locationPicker = Random.Range(0, (SpawnLocations.Length - 1));
-                var locationPicker = Random.Range(0, SpawnLocations.Length);//todo might need to -1 the length
-
-                GameObject obj = Instantiate(GMScript.round1_Obs[typePicker], SpawnLocations[locationPicker].transform.position, Quaternion.identity, SpawnLocations[locationPicker].transform);
-
-                obj.name = "Obstacle " + i.ToString();
-                //obj.transform.position = SpawnLocations[locationPicker].transform.position;
-                //work todo on obstacles that cover multiple lanes
             }
-        }
-
-        if (GMScript.currentRound == 2)
-        {
-            for (int i = 0; i < targetSpawnCount; i++)
+            if (GMScript.currentRound == 2)
             {
-                var picker = Random.Range(0, (GMScript.round2_Obs.Length - 1));
-                GameObject obj = Instantiate(GMScript.round2_Obs[picker]);
-                obj.name = "Obstacle " + i.ToString();
+                var typePicker = Random.Range(0, GMScript.round2_Obs.Length);
             }
-        }
-
-        if (GMScript.currentRound == 3)
-        {
-            for (int i = 0; i < targetSpawnCount; i++)
+            if (GMScript.currentRound == 3)
             {
-                var typePicker = Random.Range(0, (GMScript.round3_Obs.Length - 1));
-                Debug.Log(typePicker);
-                //var locationPicker = Random.Range(0, (SpawnLocations.Length - 1));
-                var locationPicker = Random.Range(0, (SpawnLocations.Length - 1));
-
-                GameObject obj = Instantiate(GMScript.round3_Obs[typePicker]);
-                obj.name = "Obstacle " + i.ToString();
-                obj.transform.position = SpawnLocations[locationPicker].transform.position;
-                //work todo on obstacles that cover multiple lanes
+                var typePicker = Random.Range(0, GMScript.round3_Obs.Length);
             }
         }
     }
