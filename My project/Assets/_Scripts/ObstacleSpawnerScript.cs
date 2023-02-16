@@ -37,21 +37,22 @@ public class ObstacleSpawnerScript : MonoBehaviour
             var locationPicker = Random.Range(0, SpawnLocations.Length);//todo might need to -1 the length
             //Spawn a basic obstacle object
             GameObject baseObj= Instantiate(baseObsPrefab, SpawnLocations[locationPicker].transform.position, Quaternion.identity, SpawnLocations[locationPicker].transform);
-
+            var objScript = GetComponent<ObstacleScript>();
+            objScript.spawnNum = i;
             if (GMScript.currentRound == 1)
             {
                 var typePicker = Random.Range(0, GMScript.round1_Obs.Length);
-                baseObj.GetComponent<ObstacleScript>().obsIdentity = GMScript.round1_Obs[typePicker];
+                objScript.obsIdentity = GMScript.round1_Obs[typePicker];
             }
             if (GMScript.currentRound == 2)
             {
                 var typePicker = Random.Range(0, GMScript.round2_Obs.Length);
-                baseObj.GetComponent<ObstacleScript>().obsIdentity = GMScript.round1_Obs[typePicker];
+                objScript.obsIdentity = GMScript.round1_Obs[typePicker];
             }
             if (GMScript.currentRound == 3)
             {
                 var typePicker = Random.Range(0, GMScript.round3_Obs.Length);
-                baseObj.GetComponent<ObstacleScript>().obsIdentity = GMScript.round1_Obs[typePicker];
+                objScript.obsIdentity = GMScript.round1_Obs[typePicker];
             }
         }
     }

@@ -13,5 +13,9 @@ MonoBehaviour:
   m_Name: New Obstacle
   m_EditorClassIdentifier: 
   name: 
-  speed: 0
   sprite: {fileID: 0}
+  laneSize: 0
+  speed: 0
+  circleCollider: 0
+  boxCollider: 0
+  colliderSize: 0.5

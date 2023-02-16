@@ -12,5 +12,10 @@ public class Obstacle : ScriptableObject
     public Sprite sprite;
     public int laneSize;
     public float speed;
+
+    [Header("Type of Collider")]
+    public bool circleCollider;
+    public bool boxCollider;
+
     public float colliderSize;
 }
