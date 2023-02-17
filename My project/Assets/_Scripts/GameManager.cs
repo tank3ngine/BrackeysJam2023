@@ -18,9 +18,9 @@ public class GameManager : MonoBehaviour
     [SerializeField] public Obstacle[] round3_Obs;
 
     [Header("Background Sprites")]
-    [SerializeField] public Sprite TartarusSprite;
-    [SerializeField] public Sprite AsphodelSprite;
-    [SerializeField] public Sprite ElysiumSprite;
+    [SerializeField] public GameObject TartarusBG;
+    [SerializeField] public GameObject AsphodelBG;
+    [SerializeField] public GameObject ElysiumBG;
 
     [Header("Obstacles in round")]
     [SerializeField] public GameObject ObstacleHolderObj;
@@ -43,9 +43,23 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         OSScript = ObstacleSpawner.GetComponent<ObstacleSpawnerScript>();
-        currentRound = SceneManager.GetActiveScene().buildIndex;
+        
         roundDuration = CalcRoundDuration();
         obstacleTimer = 4f;
+
+        if(currentRound == 1)
+        {
+            TartarusBG.SetActive(true);
+        }
+        if(currentRound == 2)
+        {
+            AsphodelBG.SetActive(true);
+        }
+        if(currentRound == 3)
+        {
+            ElysiumBG.SetActive(true);
+        }
+
     }
 
     // Update is called once per frame
