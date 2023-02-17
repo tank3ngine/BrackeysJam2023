@@ -36,9 +36,14 @@ public class ObstacleSpawnerScript : MonoBehaviour
             //var locationPicker = Random.Range(0, (SpawnLocations.Length - 1));
             var locationPicker = Random.Range(0, SpawnLocations.Length);//todo might need to -1 the length
             //Spawn a basic obstacle object
-            GameObject baseObj= Instantiate(baseObsPrefab, SpawnLocations[locationPicker].transform.position, Quaternion.identity, SpawnLocations[locationPicker].transform);
-            var objScript = GetComponent<ObstacleScript>();
+            GameObject baseObj= Instantiate(baseObsPrefab, SpawnLocations[locationPicker].transform.position, Quaternion.identity, GMScript.ObstacleHolderObj.transform);
+            
+            //Write some information to the basic obstacle, like it's spawn order and which lane it is in
+            var objScript = baseObj.GetComponent<ObstacleScript>();
             objScript.spawnNum = i;
+            objScript.laneNum = locationPicker;
+
+            //Depending on which round it is in, choose which scriptable objects to use from an array
             if (GMScript.currentRound == 1)
             {
                 var typePicker = Random.Range(0, GMScript.round1_Obs.Length);

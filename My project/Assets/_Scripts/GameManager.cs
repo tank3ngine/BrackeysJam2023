@@ -9,11 +9,20 @@ public class GameManager : MonoBehaviour
     [SerializeField] public GameObject[] AllLanes;
 
     [SerializeField] private GameObject ObstacleSpawner;
-    [SerializeField] private ObstacleSpawnerScript OSScript;
+    private ObstacleSpawnerScript OSScript;
+
+    [Header("Obstacle information holder (scrpObj)")]
     [SerializeField] public Obstacle[] round1_Obs;
     [SerializeField] public Obstacle[] round2_Obs;
     [SerializeField] public Obstacle[] round3_Obs;
 
+
+    [Header("Obstacles in round")]
+    [SerializeField] public GameObject ObstacleHolderObj;
+    [SerializeField] public GameObject[] ObstaclesInRound;
+
+
+    [Header("Round information")]
     [SerializeField] public int startLane = 3;
 
     [SerializeField] public float roundDuration;

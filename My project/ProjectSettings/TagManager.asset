@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Lanes
   - ObstaclePool
+  - Killzone
+  - Obstacle
   layers:
   - Default
   - TransparentFX
