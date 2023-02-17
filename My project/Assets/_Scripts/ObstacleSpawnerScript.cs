@@ -43,6 +43,8 @@ public class ObstacleSpawnerScript : MonoBehaviour
             objScript.spawnNum = i;
             objScript.laneNum = locationPicker;
 
+            GMScript.ObstaclesInRound.Add(baseObj);
+
             //Depending on which round it is in, choose which scriptable objects to use from an array
             if (GMScript.currentRound == 1)
             {

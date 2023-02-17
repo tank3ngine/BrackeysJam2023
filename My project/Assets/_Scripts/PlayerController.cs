@@ -158,11 +158,22 @@ public class PlayerController : MonoBehaviour
         
     }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        Debug.Log("Trigger!");
+        if (collision.CompareTag("Pain"))
+        {
+            Debug.Log("Player hit");
+            GMScript.PlayerHit();
+        }
+    }
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        Debug.Log("Collision");
         if (gameObject.CompareTag("Pain"))
         {
-
+            Debug.Log("Player hit");
+            GMScript.PlayerHit();
         }
 
         if (gameObject.CompareTag("Coin"))

@@ -19,7 +19,7 @@ public class GameManager : MonoBehaviour
 
     [Header("Obstacles in round")]
     [SerializeField] public GameObject ObstacleHolderObj;
-    [SerializeField] public GameObject[] ObstaclesInRound;
+    [SerializeField] public List<GameObject> ObstaclesInRound = new List<GameObject>();
 
 
     [Header("Round information")]
@@ -27,7 +27,10 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] public float roundDuration;
     [SerializeField] public int currentRound;
+    //obstacle spawning
     [SerializeField] public float obstacleSpawnInterval;
+    [SerializeField] public float obstacleTimer;
+    [SerializeField] public int spawnCounter = 0;
 
     
 
@@ -37,12 +40,22 @@ public class GameManager : MonoBehaviour
         OSScript = ObstacleSpawner.GetComponent<ObstacleSpawnerScript>();
         currentRound = SceneManager.GetActiveScene().buildIndex;
         roundDuration = CalcRoundDuration();
+        obstacleTimer = 4f;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if (obstacleTimer > 0)
+        {
+            obstacleTimer -= Time.deltaTime;
+        }
+        else
+        {
+            ObstaclesInRound[spawnCounter].SetActive(true);
+            spawnCounter++;
+            obstacleTimer = obstacleSpawnInterval;
+        }
     }
     public int NumObstacles()
     {
@@ -62,6 +75,11 @@ public class GameManager : MonoBehaviour
     public void StartGame(float maxTime)
     {
 
+    }
+
+    public void PlayerHit()
+    {
+        SceneManager.LoadScene("FailScene");
     }
 
     public void Checkpoint()

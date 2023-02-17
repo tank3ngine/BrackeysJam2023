@@ -10,13 +10,13 @@ GameObject:
   m_Component:
   - component: {fileID: 7312781792582391795}
   - component: {fileID: 4398267740250550672}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: 2-Lane Collider
-  m_TagString: Untagged
+  m_TagString: Pain
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &7312781792582391795
 Transform:
   m_ObjectHideFlags: 0
@@ -58,13 +58,14 @@ GameObject:
   m_Component:
   - component: {fileID: 6412444758988791098}
   - component: {fileID: 5854989289262513243}
-  m_Layer: 0
+  - component: {fileID: 4866204821613777561}
+  m_Layer: 7
   m_Name: 1-Lane Collider
-  m_TagString: Untagged
+  m_TagString: Pain
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &6412444758988791098
 Transform:
   m_ObjectHideFlags: 0
@@ -96,6 +97,18 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Size: {x: 1, y: 1}
   m_Direction: 1
+--- !u!114 &4866204821613777561
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2487992421060323690}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f838ddd7327babf4b974ffd2932215f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7227466180267239534
 GameObject:
   m_ObjectHideFlags: 0
@@ -107,9 +120,9 @@ GameObject:
   - component: {fileID: 3241543217545433922}
   - component: {fileID: 4246159479517233293}
   - component: {fileID: 3409009571616474950}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: BaseObsPrefab
-  m_TagString: Obstacle
+  m_TagString: Pain
   m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -189,8 +202,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -656230857
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -213,13 +226,13 @@ GameObject:
   m_Component:
   - component: {fileID: 5742851269996170815}
   - component: {fileID: 3843455070029765224}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: 3-Lane Collider
-  m_TagString: Untagged
+  m_TagString: Pain
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &5742851269996170815
 Transform:
   m_ObjectHideFlags: 0

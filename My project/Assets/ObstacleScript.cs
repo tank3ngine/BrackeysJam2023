@@ -36,15 +36,16 @@ public class ObstacleScript : MonoBehaviour
             tripleLaneObj.SetActive(true);
         }
 
-
-
-
         gameObject.SetActive(false);
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        transform.position = new Vector3(transform.position.x, transform.position.y + obsIdentity.speed * Time.deltaTime);
+        if (transform.position.y < -6)
+        {
+            Destroy(gameObject);
+        }
     }
 }
