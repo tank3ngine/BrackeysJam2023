@@ -18,13 +18,40 @@ public class ObstacleSpawnerScript : MonoBehaviour
         //Get references to other scripts and gameobjects
         GM = GameObject.FindGameObjectWithTag("GameController");
         GMScript = GM.GetComponent<GameManager>();
-        calcSpawns();
+        if (!GMScript.ContinuousSpawning)
+        {
+            calcSpawns();
+        }
+
     }
     private void Update()
     {
 
     }
+    public void KeepSpawning()
+    {
+        var locationPicker = Random.Range(0, SpawnLocations.Length);
+        GameObject baseObj = Instantiate(baseObsPrefab, SpawnLocations[locationPicker].transform.position, Quaternion.identity, GMScript.ObstacleHolderObj.transform);
 
+        var objScript = baseObj.GetComponent<ObstacleScript>();
+        objScript.laneNum = locationPicker;
+
+        if (GMScript.currentRound == 1)
+        {
+            var typePicker = Random.Range(0, GMScript.round1_Obs.Length);
+            objScript.obsIdentity = GMScript.round1_Obs[typePicker];
+        }
+        if (GMScript.currentRound == 2)
+        {
+            var typePicker = Random.Range(0, GMScript.round2_Obs.Length);
+            objScript.obsIdentity = GMScript.round1_Obs[typePicker];
+        }
+        if (GMScript.currentRound == 3)
+        {
+            var typePicker = Random.Range(0, GMScript.round3_Obs.Length);
+            objScript.obsIdentity = GMScript.round1_Obs[typePicker];
+        }
+    }
     public void calcSpawns()
     {
         //The total number of obstacles to spawn for this round

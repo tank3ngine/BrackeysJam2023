@@ -7,6 +7,8 @@ public class ObstacleScript : MonoBehaviour
     [SerializeField] public Obstacle obsIdentity;
     [SerializeField] public int spawnNum;
     [SerializeField] public int laneNum;
+    [SerializeField] public bool startFalse;
+
 
     [SerializeField] private SpriteRenderer SR;
 
@@ -35,8 +37,10 @@ public class ObstacleScript : MonoBehaviour
         {
             tripleLaneObj.SetActive(true);
         }
-
-        gameObject.SetActive(false);
+        if (startFalse)
+        {
+            gameObject.SetActive(false);
+        }
     }
 
     // Update is called once per frame

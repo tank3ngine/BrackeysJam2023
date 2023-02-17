@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
+    [SerializeField] public bool ContinuousSpawning;
     [SerializeField] public GameObject _NavLanes;
     [SerializeField] public GameObject[] AllLanes;
 
@@ -16,6 +17,10 @@ public class GameManager : MonoBehaviour
     [SerializeField] public Obstacle[] round2_Obs;
     [SerializeField] public Obstacle[] round3_Obs;
 
+    [Header("Background Sprites")]
+    [SerializeField] public Sprite TartarusSprite;
+    [SerializeField] public Sprite AsphodelSprite;
+    [SerializeField] public Sprite ElysiumSprite;
 
     [Header("Obstacles in round")]
     [SerializeField] public GameObject ObstacleHolderObj;
@@ -52,8 +57,15 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            ObstaclesInRound[spawnCounter].SetActive(true);
-            spawnCounter++;
+            if (!ContinuousSpawning)
+            {
+                ObstaclesInRound[spawnCounter].SetActive(true);
+                spawnCounter++;
+            }
+            else
+            {
+                OSScript.KeepSpawning();
+            }
             obstacleTimer = obstacleSpawnInterval;
         }
     }
