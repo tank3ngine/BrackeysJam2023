@@ -166,6 +166,20 @@ public class PlayerController : MonoBehaviour
             Debug.Log("Player hit");
             GMScript.PlayerHit();
         }
+
+        if (collision.CompareTag("BronzeCoin"))
+        {
+            GMScript.CoinCollected("Bronze");
+        }
+        if (collision.CompareTag("SilverCoin"))
+        {
+            GMScript.CoinCollected("Silver");
+        }
+        if (collision.CompareTag("GoldCoin"))
+        {
+            GMScript.CoinCollected("Gold");
+        }
+
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {

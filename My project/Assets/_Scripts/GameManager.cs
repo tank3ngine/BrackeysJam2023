@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    [SerializeField] public bool ContinuousSpawning;
+
     [SerializeField] public GameObject _NavLanes;
     [SerializeField] public GameObject[] AllLanes;
 
@@ -28,6 +28,10 @@ public class GameManager : MonoBehaviour
 
 
     [Header("Round information")]
+    [SerializeField] public bool ContinuousSpawning;
+    [SerializeField] public int coinRequirement;
+    [SerializeField] public int coinsCollected;
+
     [SerializeField] public int startLane = 3;
 
     [SerializeField] public float roundDuration;
@@ -108,8 +112,28 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene("FailScene");
     }
 
-    public void Checkpoint()
+    public void CoinCollected(string coinType)
     {
+        if (coinType == "Bronze")
+        {
+            coinsCollected += 1;
+        }
+        if (coinType == "Silver")
+        {
+            coinsCollected += 2;
+        }
+        if (coinType == "Gold")
+        {
+            coinsCollected += 3;
+        }
 
+        if (coinsCollected >= coinRequirement)
+        {
+            LevelCompelete();
+        }
+    }
+    public void LevelCompelete()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 }
