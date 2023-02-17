@@ -6,25 +6,39 @@ public class PlayerController : MonoBehaviour
 {
     private GameObject GM;
     private GameManager GMScript;
+    private SpriteRenderer SR;
+    private CircleCollider2D CC2D;
 
-    [Header("Player Variables")]
-    [SerializeField] private bool jumpToLane;
+    [Header("Player Lane Variabes")]
     [SerializeField] private int currentLane;
-    [SerializeField] public int startLane;
-    [SerializeField] public float vSpeed;
-    [SerializeField] public float hSpeed;
-    [SerializeField] public float laneSwitchInterval;
-    [SerializeField] public float switchTimer;
+    [SerializeField] private int startLane;
 
-    [SerializeField] public bool isMoving;
-    [SerializeField] public bool isMovingRight;
-    [SerializeField] public bool isMovingLeft;
+    [Header("Player Movement Variables")]
+    [SerializeField] private float vSpeed;
+    [SerializeField] private float hSpeed;
+    [SerializeField] private float laneSwitchInterval;
+    [SerializeField] private float switchTimer;
+    [SerializeField] private GameObject bounceBacker;
+    [SerializeField] private float bounceSpeed;
+
+    [Header("Player Movement checking")]
+    [SerializeField] private bool isMoving;
+    [SerializeField] private bool isMovingRight;
+    [SerializeField] private bool isMovingLeft;
 
     // Start is called before the first frame update
     void Start()
     {
+        //Component references
+        SR = transform.GetComponent<SpriteRenderer>();
+        CC2D = transform.GetComponent<CircleCollider2D>();
+
+        //Game Manager references
         GM = GameObject.FindGameObjectWithTag("GameController");
         GMScript = GM.GetComponent<GameManager>();
+
+        //bouncebacker references
+        bounceBacker = GameObject.Find("BounceBack");
 
         //get the starting lane from the game manager and spawn start the player in that lane (3) at it's transform.position
         startLane = GMScript.startLane;
@@ -38,7 +52,14 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        bounceBacker.transform.position = new Vector3(transform.position.x, bounceBacker.transform.position.y, bounceBacker.transform.position.z);
+        #region Vertical Movement
         float verticalInput = Input.GetAxisRaw("Vertical");
+
+        if(Input.GetAxisRaw("Vertical") == 0)
+        {
+            transform.position = Vector3.MoveTowards(transform.position, bounceBacker.transform.position, bounceSpeed*Time.deltaTime);            
+        }
 
         if (verticalInput != 0)
         {
@@ -51,9 +72,11 @@ public class PlayerController : MonoBehaviour
             {
                 transform.position = new Vector3(transform.position.x, transform.position.y + (vSpeed * Time.deltaTime), transform.position.z);
             }
-
         }
+        #endregion
 
+        #region Horizontal Movement
+        //Timer that determines how fast player can switch lanes
         if (switchTimer > 0)
         {
             switchTimer -= Time.deltaTime;
@@ -63,9 +86,9 @@ public class PlayerController : MonoBehaviour
             switchTimer = 0;
         }
 
+        //Horizontal Movement
         float horizontalInput = Input.GetAxisRaw("Horizontal");
-
-        if (switchTimer <= 0 && !isMoving)
+        if (switchTimer <= 0)
         {
             if (horizontalInput == 0)
             {
@@ -86,9 +109,7 @@ public class PlayerController : MonoBehaviour
             {
                 Debug.Log("Can't move this way");
             }
-        }
-        
-
+        }       
         
         if (isMovingLeft)
         {
@@ -99,7 +120,7 @@ public class PlayerController : MonoBehaviour
         {
             MoveRight();
         }
-        
+        #endregion
     }
     private void MoveLeft()
     {
@@ -122,96 +143,23 @@ public class PlayerController : MonoBehaviour
 
         int newLane = currentLane + 1;
         float newLanePositionx = GMScript.AllLanes[newLane].transform.position.x;
+
+        //doesn't work, movement is broken
+        //transform.position = Vector3.MoveTowards(transform.position, GMScript.AllLanes[newLane].transform.position, hSpeed * Time.deltaTime);
+        
         if (newLanePositionx - transform.position.x <= 0)
         {
             isMovingRight = false;
             transform.position = new Vector3(newLanePositionx, transform.position.y, transform.position.z);
             currentLane = newLane;
             switchTimer = laneSwitchInterval;
-            Debug.Log("Move Left");
+            Debug.Log("Move Right");
         }
-    }
-    private void MoveUpdate(float hInput)
-    {
-        if (hInput == 0)
-        {
-            return;
-        }
-
-        if (currentLane != 0 && hInput < 0)
-        {
-            isMoving = true;
-            int newLane = currentLane - 1;
-            var newLanePosition = GMScript.AllLanes[newLane].transform.position;
-
-            
-
-            //transform.position = new Vector3(transform.position.x - speed, transform.position.y, transform.position.z);
-            if (transform.position.x - newLanePosition.x <= 0)
-            {
-                currentLane = newLane;
-                switchTimer = laneSwitchInterval;
-                Debug.Log("Move Left");
-            }
-        }
-
-        if (currentLane != (GMScript.AllLanes.Length - 1) && hInput > 0)
-        {
-            isMoving = true;
-            int newLane = currentLane + 1;
-            var newLanePosition = GMScript.AllLanes[newLane].transform.position.x;
-
-            //transform.position = new Vector3(transform.position.x + speed, transform.position.y, transform.position.z);
-
-
-            if (newLanePosition - transform.position.x <= 0)
-            {
-                currentLane = newLane;
-                switchTimer = laneSwitchInterval;
-                Debug.Log("Move Left");
-            }
-        }
-
-        else
-        {
-            Debug.Log("Can't move");
-        }
+        
     }
 
-    private int JumpLeft(float hInput)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
         
-        if (currentLane != 0 && hInput < 0)
-        {
-            int newLane = currentLane - 1;
-            var newLanePosition = GMScript.AllLanes[newLane].transform.position;
-
-            transform.position = newLanePosition;
-
-            currentLane = newLane;
-            switchTimer = laneSwitchInterval;
-            Debug.Log("Move Left");            
-
-            return newLane;
-        }
-
-        if (currentLane != (GMScript.AllLanes.Length - 1) && hInput > 0)
-        {
-            int newLane = currentLane + 1;
-            var newLanePosition = GMScript.AllLanes[newLane].transform.position;
-
-            transform.position = newLanePosition;
-
-            currentLane = newLane;
-            switchTimer = laneSwitchInterval;
-            Debug.Log("Move Right");
-            return newLane;
-        }
-
-        else
-        {
-            Debug.Log("Can't move");
-            return currentLane;
-        }
     }
 }
