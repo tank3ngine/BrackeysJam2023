@@ -38,14 +38,6 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (switchTimer > 0)
-        {
-            switchTimer -= Time.deltaTime;
-        }
-        if (switchTimer <= 0)
-        {
-            switchTimer = 0;
-        }
         float verticalInput = Input.GetAxisRaw("Vertical");
 
         if (verticalInput != 0)
@@ -60,6 +52,15 @@ public class PlayerController : MonoBehaviour
                 transform.position = new Vector3(transform.position.x, transform.position.y + (vSpeed * Time.deltaTime), transform.position.z);
             }
 
+        }
+
+        if (switchTimer > 0)
+        {
+            switchTimer -= Time.deltaTime;
+        }
+        if (switchTimer <= 0)
+        {
+            switchTimer = 0;
         }
 
         float horizontalInput = Input.GetAxisRaw("Horizontal");
