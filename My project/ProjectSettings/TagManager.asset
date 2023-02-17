@@ -7,7 +7,8 @@ TagManager:
   - Lanes
   - ObstaclePool
   - Killzone
-  - Obstacle
+  - Pain
+  - Coin
   layers:
   - Default
   - TransparentFX
