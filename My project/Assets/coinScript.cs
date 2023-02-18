@@ -16,6 +16,8 @@ public class coinScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        transform.localScale = new Vector3(0, 0, 0);
+
         SR = transform.GetComponent<SpriteRenderer>();
         if (gameObject.CompareTag("BronzeCoin"))
         {
@@ -38,6 +40,11 @@ public class coinScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (transform.localScale.x < 1)
+        {
+            transform.localScale += new Vector3(0 + 0.05f, 0 + 0.05f, 0 + 0.05f);
+        }
+
         transform.position = new Vector3(transform.position.x, transform.position.y + speed * Time.deltaTime);
         if (transform.position.y < -6)
         {

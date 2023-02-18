@@ -8,6 +8,8 @@ public class ObstacleScript : MonoBehaviour
     [SerializeField] public int spawnNum;
     [SerializeField] public int laneNum;
     [SerializeField] public bool startFalse;
+    private GameObject GM;
+    private GameManager GMScript;
 
 
     [SerializeField] private SpriteRenderer SR;
@@ -21,7 +23,14 @@ public class ObstacleScript : MonoBehaviour
 
     void Start()
     {
+        GM = GameObject.FindGameObjectWithTag("GameController");
+        GMScript = GM.GetComponent<GameManager>();
         name = obsIdentity.name + "_" + spawnNum;
+        transform.localScale = new Vector3(0, 0, 0);
+
+        singleLaneObj.SetActive(false);
+        doubleLaneObj.SetActive(false);
+        tripleLaneObj.SetActive(false);
 
         if (obsIdentity.laneSize == 1)
         {
@@ -30,29 +39,27 @@ public class ObstacleScript : MonoBehaviour
         }
         if (obsIdentity.laneSize == 2)
         {
-            doubleLaneObj.GetComponent<SpriteRenderer>().sprite = obsIdentity.sprite;
-            if (laneNum == 0)
-            {
-                singleLaneObj.transform.position = new Vector3(0.5f, transform.position.y);
-            }
-            if (laneNum == 6)
-            {
-                singleLaneObj.transform.position = new Vector3(-0.5f, transform.position.y);
-            }
             doubleLaneObj.SetActive(true);
+            doubleLaneObj.GetComponent<SpriteRenderer>().sprite = obsIdentity.sprite;
+            //doubleLaneObj.transform.position = new Vector3(0.5f, transform.position.y);
+            if (laneNum == GMScript.AllLanes.Length - 1)
+            {
+                transform.position = GMScript.AllLanes[5].transform.position;
+            }
+            
         }
         if (obsIdentity.laneSize == 3)
         {
             tripleLaneObj.GetComponent<SpriteRenderer>().sprite = obsIdentity.sprite;
+            tripleLaneObj.SetActive(true);
             if (laneNum == 0)
             {
-                singleLaneObj.transform.position = new Vector3(1, transform.position.y);
+                transform.position = GMScript.AllLanes[1].transform.position;
             }
             if (laneNum == 6)
             {
-                singleLaneObj.transform.position = new Vector3(-1f, transform.position.y);
+                transform.position = GMScript.AllLanes[5].transform.position;
             }
-            tripleLaneObj.SetActive(true);
         }
         if (startFalse)
         {
@@ -63,7 +70,16 @@ public class ObstacleScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (transform == null)
+        {
+            Debug.Log("Transform not found");
+            return;
+        }
         transform.position = new Vector3(transform.position.x, transform.position.y + obsIdentity.speed * Time.deltaTime);
+        if (transform.localScale.x < 1)
+        {
+            transform.localScale += new Vector3(0 + 0.05f, 0 + 0.05f, 0 + 0.05f);
+        }
         if (transform.position.y < -6)
         {
             Destroy(gameObject);

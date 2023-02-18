@@ -43,7 +43,7 @@ public class ObstacleSpawnerScript : MonoBehaviour
         }
         if (GMScript.currentRound == 2)
         {
-            var typePicker = Random.Range(0, GMScript.round2_Obs.Length);
+            var typePicker = Random.Range(0, GMScript.round2_Obs.Length-1);
             objScript.obsIdentity = GMScript.round1_Obs[typePicker];
         }
         if (GMScript.currentRound == 3)

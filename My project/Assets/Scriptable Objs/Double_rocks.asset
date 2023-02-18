@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1307f0b5c5124374b8e1a13545a20b92, type: 3}
   m_Name: Double_rocks
   m_EditorClassIdentifier: 
-  name: Doubel_rocks
+  name: Double_rocks
   sprite: {fileID: 21300000, guid: 6f489d0b40369474e9eb5d62bc0f9c71, type: 3}
   laneSize: 2
   laneNum: 0

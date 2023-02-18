@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1307f0b5c5124374b8e1a13545a20b92, type: 3}
-  m_Name: Double_pillars
+  m_Name: tar_serp
   m_EditorClassIdentifier: 
-  name: Double_pillar
-  sprite: {fileID: 21300000, guid: 737fb75eeea5c854ba60ed4aeea1a2be, type: 3}
-  laneSize: 2
+  name: Tar_serp
+  sprite: {fileID: 21300000, guid: e508407502961124b98daf0b4fab9f19, type: 3}
+  laneSize: 3
   laneNum: 0
-  speed: -3
+  speed: -2
