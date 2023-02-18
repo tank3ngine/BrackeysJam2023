@@ -10,6 +10,9 @@ TagManager:
   - Pain
   - Coin
   - Obstacle
+  - BronzeCoin
+  - SilverCoin
+  - GoldCoin
   layers:
   - Default
   - TransparentFX
