@@ -1369,12 +1369,12 @@ MonoBehaviour:
   coinHolder: {fileID: 1737455204}
   coinUi: {fileID: 1708556955}
   ContinuousSpawning: 1
-  coinRequirement: 30
+  coinRequirement: 50
   coinsCollected: 0
   startLane: 3
   roundDuration: 30
-  currentRound: 1
-  obstacleSpawnInterval: 2.5
+  currentRound: 2
+  obstacleSpawnInterval: 2
   obstacleTimer: 0
   spawnCounter: 0
 --- !u!114 &663046786
