@@ -13,6 +13,7 @@ TagManager:
   - BronzeCoin
   - SilverCoin
   - GoldCoin
+  - ObsSpawner
   layers:
   - Default
   - TransparentFX

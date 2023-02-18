@@ -8,8 +8,8 @@ public class ObstacleScript : MonoBehaviour
     [SerializeField] public int spawnNum;
     [SerializeField] public int laneNum;
     [SerializeField] public bool startFalse;
-    private GameObject GM;
-    private GameManager GMScript;
+    private GameObject ObsSpawner;
+    private ObstacleSpawnerScript ObsSpawnerScript;
 
 
     [SerializeField] private SpriteRenderer SR;
@@ -23,9 +23,9 @@ public class ObstacleScript : MonoBehaviour
 
     void Start()
     {
-        GM = GameObject.FindGameObjectWithTag("GameController");
-        GMScript = GM.GetComponent<GameManager>();
-        name = obsIdentity.name + "_" + spawnNum;
+        ObsSpawner = GameObject.FindGameObjectWithTag("ObsSpawner");
+        ObsSpawnerScript = ObsSpawner.GetComponent<ObstacleSpawnerScript>();
+        name = obsIdentity.name;// + "_" + spawnNum;
         transform.localScale = new Vector3(0, 0, 0);
 
         singleLaneObj.SetActive(false);
@@ -42,9 +42,9 @@ public class ObstacleScript : MonoBehaviour
             doubleLaneObj.SetActive(true);
             doubleLaneObj.GetComponent<SpriteRenderer>().sprite = obsIdentity.sprite;
             //doubleLaneObj.transform.position = new Vector3(0.5f, transform.position.y);
-            if (laneNum == GMScript.AllLanes.Length - 1)
+            if (laneNum == ObsSpawnerScript.SpawnLocations.Length - 1)
             {
-                transform.position = GMScript.AllLanes[5].transform.position;
+                transform.position = ObsSpawnerScript.SpawnLocations[5].transform.position;
             }
             
         }
@@ -54,11 +54,11 @@ public class ObstacleScript : MonoBehaviour
             tripleLaneObj.SetActive(true);
             if (laneNum == 0)
             {
-                transform.position = GMScript.AllLanes[1].transform.position;
+                transform.position = ObsSpawnerScript.SpawnLocations[1].transform.position;
             }
             if (laneNum == 6)
             {
-                transform.position = GMScript.AllLanes[5].transform.position;
+                transform.position = ObsSpawnerScript.SpawnLocations[5].transform.position;
             }
         }
         if (startFalse)
@@ -70,7 +70,7 @@ public class ObstacleScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (transform == null)
+        if (transform.gameObject == null)
         {
             Debug.Log("Transform not found");
             return;

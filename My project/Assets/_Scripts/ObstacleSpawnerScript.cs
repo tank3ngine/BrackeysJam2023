@@ -7,7 +7,7 @@ public class ObstacleSpawnerScript : MonoBehaviour
     private GameObject GM;
     private GameManager GMScript;
 
-    [SerializeField] private GameObject[] SpawnLocations;
+    [SerializeField] public GameObject[] SpawnLocations;
     [SerializeField] private GameObject baseObsPrefab;
 
     [SerializeField] private int spawnCount = 0;
@@ -43,13 +43,14 @@ public class ObstacleSpawnerScript : MonoBehaviour
         }
         if (GMScript.currentRound == 2)
         {
-            var typePicker = Random.Range(0, GMScript.round2_Obs.Length-1);
-            objScript.obsIdentity = GMScript.round1_Obs[typePicker];
+            var typePicker = Random.Range(0, GMScript.round2_Obs.Length);
+            Debug.Log(typePicker);
+            objScript.obsIdentity = GMScript.round2_Obs[typePicker];
         }
         if (GMScript.currentRound == 3)
         {
             var typePicker = Random.Range(0, GMScript.round3_Obs.Length);
-            objScript.obsIdentity = GMScript.round1_Obs[typePicker];
+            objScript.obsIdentity = GMScript.round3_Obs[typePicker];
         }
     }
     public void calcSpawns()
@@ -75,18 +76,18 @@ public class ObstacleSpawnerScript : MonoBehaviour
             //Depending on which round it is in, choose which scriptable objects to use from an array
             if (GMScript.currentRound == 1)
             {
-                var typePicker = Random.Range(0, GMScript.round1_Obs.Length);
+                var typePicker = Random.Range(0, GMScript.round1_Obs.Length-1);
                 objScript.obsIdentity = GMScript.round1_Obs[typePicker];
             }
             if (GMScript.currentRound == 2)
             {
-                var typePicker = Random.Range(0, GMScript.round2_Obs.Length);
-                objScript.obsIdentity = GMScript.round1_Obs[typePicker];
+                var typePicker = Random.Range(0, GMScript.round2_Obs.Length-1);
+                objScript.obsIdentity = GMScript.round2_Obs[typePicker];
             }
             if (GMScript.currentRound == 3)
             {
-                var typePicker = Random.Range(0, GMScript.round3_Obs.Length);
-                objScript.obsIdentity = GMScript.round1_Obs[typePicker];
+                var typePicker = Random.Range(0, GMScript.round3_Obs.Length-1);
+                objScript.obsIdentity = GMScript.round3_Obs[typePicker];
             }
         }
     }
