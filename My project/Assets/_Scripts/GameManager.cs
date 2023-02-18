@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class GameManager : MonoBehaviour
 {
@@ -26,8 +27,9 @@ public class GameManager : MonoBehaviour
     [SerializeField] public GameObject ObstacleHolderObj;
     [SerializeField] public List<GameObject> ObstaclesInRound = new List<GameObject>();
     
-    [Header("Obstacles in round")]
+    [Header("Coin Objects")]
     [SerializeField] public GameObject coinHolder;
+    [SerializeField] private TMP_Text coinUi;
 
     [Header("Round information")]
     [SerializeField] public bool ContinuousSpawning;
@@ -119,21 +121,32 @@ public class GameManager : MonoBehaviour
         if (coinType == "Bronze")
         {
             coinsCollected += 1;
+            updateCoinUi(1);
         }
         if (coinType == "Silver")
         {
             coinsCollected += 2;
+            updateCoinUi(2);
         }
         if (coinType == "Gold")
         {
             coinsCollected += 3;
+            updateCoinUi(3);
         }
+
+
 
         if (coinsCollected >= coinRequirement)
         {
             LevelCompelete();
         }
     }
+    public void updateCoinUi(int type)
+    {
+
+        coinUi.text = coinsCollected + "/" + coinRequirement;
+    }
+
     public void LevelCompelete()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
