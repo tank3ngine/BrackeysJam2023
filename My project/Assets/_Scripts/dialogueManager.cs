@@ -13,6 +13,8 @@ public class dialogueManager : MonoBehaviour
     [SerializeField] private TMP_Text dialogueText;
 
     [SerializeField] private GameObject ExampleImage;
+    [SerializeField] private Sprite charon1;
+    [SerializeField] private Sprite charon2;
 
     [SerializeField] private GameObject continueButton;
     // [SerializeField] private GameObject nextSceneButton;
@@ -55,9 +57,29 @@ public class dialogueManager : MonoBehaviour
 
         if(dialogueAssigner == "intro")
         {
-          //  if nextDialogueIndex == 2)
+            if (nextDialogueIndex == 2)
+            {
+                ExampleImage.GetComponent<Image>().sprite = charon1;
+            }
             
         }
+
+        if (dialogueAssigner == "secondDialogue")
+        {
+            //  if nextDialogueIndex == 2)
+
+        }
+           if (dialogueAssigner == "thirdDialogue")
+        {
+            //  if nextDialogueIndex == 2)
+
+        }
+            if (dialogueAssigner == "winDialogue")
+        {
+            //  if nextDialogueIndex == 2)
+
+        }
+
 
 
 
