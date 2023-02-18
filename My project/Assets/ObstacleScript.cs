@@ -23,18 +23,35 @@ public class ObstacleScript : MonoBehaviour
     {
         name = obsIdentity.name + "_" + spawnNum;
 
-        SR.sprite = obsIdentity.sprite;
-
         if (obsIdentity.laneSize == 1)
         {
+            singleLaneObj.GetComponent<SpriteRenderer>().sprite = obsIdentity.sprite;
             singleLaneObj.SetActive(true);
         }
         if (obsIdentity.laneSize == 2)
         {
+            doubleLaneObj.GetComponent<SpriteRenderer>().sprite = obsIdentity.sprite;
+            if (laneNum == 0)
+            {
+                singleLaneObj.transform.position = new Vector3(0.5f, transform.position.y);
+            }
+            if (laneNum == 6)
+            {
+                singleLaneObj.transform.position = new Vector3(-0.5f, transform.position.y);
+            }
             doubleLaneObj.SetActive(true);
         }
         if (obsIdentity.laneSize == 3)
         {
+            tripleLaneObj.GetComponent<SpriteRenderer>().sprite = obsIdentity.sprite;
+            if (laneNum == 0)
+            {
+                singleLaneObj.transform.position = new Vector3(1, transform.position.y);
+            }
+            if (laneNum == 6)
+            {
+                singleLaneObj.transform.position = new Vector3(-1f, transform.position.y);
+            }
             tripleLaneObj.SetActive(true);
         }
         if (startFalse)

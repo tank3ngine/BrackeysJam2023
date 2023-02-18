@@ -16,7 +16,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &7312781792582391795
 Transform:
   m_ObjectHideFlags: 0
@@ -46,7 +46,7 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_Size: {x: 2.25, y: 1}
+  m_Size: {x: 2, y: 1}
   m_Direction: 1
 --- !u!1 &2487992421060323690
 GameObject:
@@ -65,7 +65,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &6412444758988791098
 Transform:
   m_ObjectHideFlags: 0
@@ -160,6 +160,7 @@ MonoBehaviour:
   obsIdentity: {fileID: 0}
   spawnNum: 0
   laneNum: 0
+  startFalse: 0
   SR: {fileID: 3409009571616474950}
   singleLaneObj: {fileID: 2487992421060323690}
   doubleLaneObj: {fileID: 936245075858320290}
@@ -210,7 +211,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 3.75, y: 2.5}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 0
@@ -232,7 +233,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &5742851269996170815
 Transform:
   m_ObjectHideFlags: 0
@@ -262,5 +263,5 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_Size: {x: 3.5, y: 1}
+  m_Size: {x: 3, y: 1}
   m_Direction: 1
