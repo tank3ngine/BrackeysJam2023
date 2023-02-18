@@ -25,7 +25,9 @@ public class GameManager : MonoBehaviour
     [Header("Obstacles in round")]
     [SerializeField] public GameObject ObstacleHolderObj;
     [SerializeField] public List<GameObject> ObstaclesInRound = new List<GameObject>();
-
+    
+    [Header("Obstacles in round")]
+    [SerializeField] public GameObject coinHolder;
 
     [Header("Round information")]
     [SerializeField] public bool ContinuousSpawning;

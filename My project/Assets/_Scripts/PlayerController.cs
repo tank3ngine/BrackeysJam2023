@@ -170,14 +170,17 @@ public class PlayerController : MonoBehaviour
         if (collision.CompareTag("BronzeCoin"))
         {
             GMScript.CoinCollected("Bronze");
+            Destroy(collision);
         }
         if (collision.CompareTag("SilverCoin"))
         {
             GMScript.CoinCollected("Silver");
+            Destroy(collision);
         }
         if (collision.CompareTag("GoldCoin"))
         {
             GMScript.CoinCollected("Gold");
+            Destroy(collision);
         }
 
     }
