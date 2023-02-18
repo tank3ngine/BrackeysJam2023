@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -31,6 +32,10 @@ public class GameManager : MonoBehaviour
     [SerializeField] public GameObject coinHolder;
     [SerializeField] private TMP_Text coinUi;
 
+    [Header("Health stuff")]
+    [SerializeField] private Image[] Hearts;
+    [SerializeField] private int currentHealth;
+
     [Header("Round information")]
     [SerializeField] public bool ContinuousSpawning;
     [SerializeField] public int coinRequirement;
@@ -51,7 +56,11 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         OSScript = ObstacleSpawner.GetComponent<ObstacleSpawnerScript>();
-        
+        foreach (var heart in Hearts)
+        {
+            heart.enabled = true;
+        }
+        currentHealth = 3;
         roundDuration = CalcRoundDuration();
         obstacleTimer = 4f;
 
@@ -113,7 +122,19 @@ public class GameManager : MonoBehaviour
 
     public void PlayerHit()
     {
-        SceneManager.LoadScene("FailScene");
+        currentHealth--;
+        if (currentHealth == 2)
+        {
+            Hearts[2].enabled = false;
+        }
+        if (currentHealth == 1)
+        {
+            Hearts[1].enabled = false;
+        }
+        else
+        {
+            SceneManager.LoadScene("LoseScene");
+        }
     }
 
     public void CoinCollected(string coinType)
