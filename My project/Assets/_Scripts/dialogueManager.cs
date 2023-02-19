@@ -12,12 +12,12 @@ public class dialogueManager : MonoBehaviour
     [SerializeField] public List<TMP_Text> Dialogue = new List<TMP_Text>();
     [SerializeField] private TMP_Text dialogueText;
 
-    [SerializeField] private GameObject ExampleImage;
-    [SerializeField] private Sprite charon1;
-    [SerializeField] private Sprite charon2;
+    [SerializeField] private Image charon1;
+    [SerializeField] private Image charon2;
+    
 
     [SerializeField] private GameObject continueButton;
-    // [SerializeField] private GameObject nextSceneButton;
+    [SerializeField] private GameObject nextSceneButton;
 
     [SerializeField] private bool lastText = false;
 
@@ -47,8 +47,8 @@ public class dialogueManager : MonoBehaviour
 
         {
             continueButton.SetActive(false);
-           // nextSceneButton.SetActive(true);
-         // Debug.Log("End of dialogue at index: " + nextDialoueIndex);
+            nextSceneButton.SetActive(true);
+         //Debug.Log("End of dialogue at index: " + nextDialoueIndex);
 
         }
 
@@ -57,9 +57,10 @@ public class dialogueManager : MonoBehaviour
 
         if(dialogueAssigner == "intro")
         {
-            if (nextDialogueIndex == 2)
+            if (nextDialogueIndex == 6)
             {
-                ExampleImage.GetComponent<Image>().sprite = charon1;
+                // charon1.enabled = false;
+                // charon2.enabled = true; 
             }
             
         }
@@ -71,17 +72,27 @@ public class dialogueManager : MonoBehaviour
         }
            if (dialogueAssigner == "thirdDialogue")
         {
-            //  if nextDialogueIndex == 2)
+             if (nextDialogueIndex == 6)
+            {
+              
+            }
 
         }
-            if (dialogueAssigner == "winDialogue")
-        {
-            //  if nextDialogueIndex == 2)
-
-        }
+            
 
 
+     
+    }
+
+    public void LoadScene(string sceneName)
+    {
+        SceneManager.LoadScene(sceneName);
+    }
 
 
+    private void Update()
+    {
+        
     }
 }
+
