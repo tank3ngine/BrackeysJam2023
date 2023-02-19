@@ -27,6 +27,7 @@ public class dialogueManager : MonoBehaviour
      void Start()
     {
         dialogueText.text = "...";
+        charon2.enabled = false;  
        // ExampleImage.SetActive(true);
 
        // if (dialogueAssigner != "intro")
@@ -59,24 +60,40 @@ public class dialogueManager : MonoBehaviour
         {
             if (nextDialogueIndex == 6)
             {
-                // charon1.enabled = false;
-                // charon2.enabled = true; 
+                 charon1.enabled = false;
+                 charon2.enabled = true; 
             }
             
         }
 
-        if (dialogueAssigner == "secondDialogue")
+        if (dialogueAssigner == "second")
         {
-            //  if nextDialogueIndex == 2)
-
-        }
-           if (dialogueAssigner == "thirdDialogue")
-        {
-             if (nextDialogueIndex == 6)
+             if (nextDialogueIndex == 3)
             {
-              
+                charon1.enabled = false;
+                charon2.enabled = true; 
             }
 
+        }
+           if (dialogueAssigner == "win")
+        {
+             if (nextDialogueIndex == 3)
+            {
+                charon1.enabled = false;
+                charon2.enabled = true; 
+            }
+
+
+        }
+
+           if (dialogueAssigner == "lose")
+        {
+
+            if (nextDialogueIndex == 2)
+            {
+                charon1.enabled = false;
+                charon2.enabled = true;
+            }
         }
             
 

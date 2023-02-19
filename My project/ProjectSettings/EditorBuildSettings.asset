@@ -9,26 +9,35 @@ EditorBuildSettings:
     path: Assets/Scenes/1_TitleScene.unity
     guid: 97e3b9c0533cb7d48b14e6a4cb3baa4c
   - enabled: 1
-    path: Assets/Scenes/2_IntroDialogue.unity
-    guid: c165fc1f4fa58dc4b9ef7523dd89cc69
+    path: Assets/Scenes/IntroDialogue.unity
+    guid: 5de2af666251b7b4888c12e9b3d2dfb4
   - enabled: 1
     path: Assets/Scenes/3_Tartarus.unity
     guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 1
-    path: Assets/Scenes/4_SecondDialogue 1.unity
-    guid: 3037afcc002508040b1b5586e630254e
+    path: Assets/Scenes/SecondDialogue 1.unity
+    guid: c0075cc48576e1a40a913f6dce9143c5
   - enabled: 1
     path: Assets/Scenes/5_Asphodel.unity
     guid: 7588c749dce877b45903855d3d4426b6
   - enabled: 1
-    path: Assets/Scenes/6_ThirdDialogue 1.unity
-    guid: 78f9bcdc30dbcad4d992059764858626
+    path: Assets/Scenes/ThirdDialogue 1.unity
+    guid: e24a9e203f93bbc43a0014ab6893019a
   - enabled: 1
     path: Assets/Scenes/7_Elysium.unity
     guid: c5d5d88b625154b41bac3992847ea25d
   - enabled: 1
-    path: Assets/Scenes/WinDialogue.unity
-    guid: 7cd08b8802ce08c4eb173b9ec7dbe27e
+    path: Assets/Scenes/LoseScene.unity
+    guid: c165fc1f4fa58dc4b9ef7523dd89cc69
+  - enabled: 0
+    path: Assets/Scenes/4_SecondDialogue 1.unity
+    guid: 3037afcc002508040b1b5586e630254e
+  - enabled: 0
+    path: Assets/Scenes/6_ThirdDialogue 1.unity
+    guid: 78f9bcdc30dbcad4d992059764858626
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
   - enabled: 1
     path: Assets/Scenes/LoseScene.unity
     guid: 58d97eb7694164b4f883eeb4b5e876fe
