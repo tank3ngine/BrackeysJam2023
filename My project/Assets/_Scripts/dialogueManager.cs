@@ -62,48 +62,44 @@ public class dialogueManager : MonoBehaviour
             {
                  charon1.enabled = false;
                  charon2.enabled = true; 
-            }
-            
+            }            
         }
 
         if (dialogueAssigner == "second")
         {
-             if (nextDialogueIndex == 3)
+            if (nextDialogueIndex == 3)
             {
                 charon1.enabled = false;
                 charon2.enabled = true; 
             }
 
         }
-           if (dialogueAssigner == "win")
+        if (dialogueAssigner == "win")
         {
              if (nextDialogueIndex == 3)
             {
                 charon1.enabled = false;
                 charon2.enabled = true; 
             }
-
-
         }
 
-           if (dialogueAssigner == "lose")
+        if (dialogueAssigner == "lose")
         {
-
             if (nextDialogueIndex == 2)
             {
                 charon1.enabled = false;
                 charon2.enabled = true;
             }
         }
-            
-
-
-     
     }
 
-    public void LoadScene(string sceneName)
+    public void LoadScene()
     {
-        SceneManager.LoadScene(sceneName);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex+1);
+    }
+    public void LoadTitleScene()
+    {
+        SceneManager.LoadScene(0);
     }
 
 

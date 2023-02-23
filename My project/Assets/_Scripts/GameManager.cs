@@ -82,6 +82,10 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Backspace))
+        {
+            LevelCompelete();
+        }
         if (obstacleTimer > 0)
         {
             obstacleTimer -= Time.deltaTime;
@@ -131,7 +135,7 @@ public class GameManager : MonoBehaviour
         {
             Hearts[1].enabled = false;
         }
-        else
+        if (currentHealth == 0)
         {
             SceneManager.LoadScene("LoseScene");
         }
@@ -170,6 +174,6 @@ public class GameManager : MonoBehaviour
 
     public void LevelCompelete()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex+1);
     }
 }
