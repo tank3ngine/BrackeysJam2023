@@ -165,11 +165,15 @@ public class PlayerController : MonoBehaviour
         {
             Debug.Log("Player hit");
             GMScript.PlayerHit();
+
         }
 
         if (collision.CompareTag("BronzeCoin"))
         {
+            //Run the CoinCollected function in the GamaManager script, passing through the string name ("Bronze")
             GMScript.CoinCollected("Bronze");
+
+            //Delete what has collided with the player i.e. the bronze coin
             Destroy(collision.gameObject);
         }
         if (collision.CompareTag("SilverCoin"))
