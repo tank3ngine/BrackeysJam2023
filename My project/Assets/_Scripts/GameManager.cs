@@ -11,6 +11,9 @@ public class GameManager : MonoBehaviour
     [SerializeField] public GameObject _NavLanes;
     [SerializeField] public GameObject[] AllLanes;
 
+    private GameObject player;
+    private PlayerController playerScript;
+
     [SerializeField] private GameObject ObstacleSpawner;
     private ObstacleSpawnerScript OSScript;
 
@@ -55,6 +58,8 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        player = GameObject.FindGameObjectWithTag("Player");
+        playerScript = player.GetComponent<PlayerController>();
         OSScript = ObstacleSpawner.GetComponent<ObstacleSpawnerScript>();
         foreach (var heart in Hearts)
         {
@@ -124,8 +129,9 @@ public class GameManager : MonoBehaviour
 
     }
 
-    public void PlayerHit()
+    public void PlayerHit(float iTime)
     {
+        StartCoroutine(iFrames(iTime));
         currentHealth--;
         if (currentHealth == 2)
         {
@@ -138,6 +144,20 @@ public class GameManager : MonoBehaviour
         if (currentHealth == 0)
         {
             SceneManager.LoadScene("LoseScene");
+        }
+    }
+    IEnumerator iFrames(float countTime)
+    {
+        while (true)
+        {
+            player.GetComponent<CircleCollider2D>().enabled = false;
+            //player.GetComponent<SpriteRenderer>().color = ;
+
+            yield return new WaitForSeconds(countTime);
+
+            player.GetComponent<CircleCollider2D>().enabled = true;
+
+            yield break;
         }
     }
 

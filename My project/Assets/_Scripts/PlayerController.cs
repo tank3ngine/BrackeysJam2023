@@ -8,6 +8,11 @@ public class PlayerController : MonoBehaviour
     private GameManager GMScript;
     private SpriteRenderer SR;
     private CircleCollider2D CC2D;
+    private Animator mAnimator;
+
+    [Header("Player Stats")]
+    [SerializeField] public float iTime;
+    [SerializeField] private Animation hitAnimation;
 
     [Header("Player Lane Variabes")]
     [SerializeField] private int currentLane;
@@ -33,6 +38,8 @@ public class PlayerController : MonoBehaviour
         SR = transform.GetComponent<SpriteRenderer>();
         CC2D = transform.GetComponent<CircleCollider2D>();
 
+        mAnimator = GetComponent<Animator>();
+
         //Game Manager references
         GM = GameObject.FindGameObjectWithTag("GameController");
         GMScript = GM.GetComponent<GameManager>();
@@ -52,6 +59,7 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         bounceBacker.transform.position = new Vector3(transform.position.x, bounceBacker.transform.position.y, bounceBacker.transform.position.z);
         #region Vertical Movement
         float verticalInput = Input.GetAxisRaw("Vertical");
@@ -164,8 +172,12 @@ public class PlayerController : MonoBehaviour
         if (collision.CompareTag("Pain"))
         {
             Debug.Log("Player hit");
-            GMScript.PlayerHit();
+            GMScript.PlayerHit(iTime);
 
+            if (mAnimator != null)
+            {
+                mAnimator.SetTrigger("hit");
+            }
         }
 
         if (collision.CompareTag("BronzeCoin"))
@@ -194,7 +206,7 @@ public class PlayerController : MonoBehaviour
         if (gameObject.CompareTag("Pain"))
         {
             Debug.Log("Player hit");
-            GMScript.PlayerHit();
+            GMScript.PlayerHit(iTime);
         }
 
         if (gameObject.CompareTag("Coin"))
